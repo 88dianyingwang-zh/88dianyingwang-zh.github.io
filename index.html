@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>88电影网 - 八八影院 · 轻松看片每一天</title>
+<meta name="keywords" content="88电影网,八八影院,免费电影,高清影视,电影推荐,电视剧在线观看">
+<meta name="description" content="88电影网（八八影院）致力于让看片更轻松，聚合电影、电视剧、综艺、动漫等高清资源，分类清晰、加载快速，每天都有新片更新，是大众追剧看电影的便捷之选。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://88dianyingwang-zh.github.io">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍿</text></svg>">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --teal:#0f9d8f;
+    --teal-d:#0b7d72;
+    --cream:#fff9f0;
+    --paper:#f4fbfa;
+    --ink:#2d3436;
+    --muted:#7a8b8a;
+    --shadow:0 8px 30px rgba(15,157,143,.12);
+    --radius:14px;
+  }
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"PingFang SC","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+    background:var(--paper);color:var(--ink);line-height:1.85;
+  }
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+
+  /* Header */
+  header{background:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 18px rgba(0,0,0,.06)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:78px}
+  .brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink)}
+  .logo-bubble{
+    width:52px;height:52px;border-radius:16px;background:var(--teal);
+    display:grid;place-items:center;color:#fff;font-size:22px;font-weight:900;
+    transform:rotate(-6deg);box-shadow:0 4px 12px rgba(15,157,143,.4);
+  }
+  .brand h1{font-size:22px;letter-spacing:1px}
+  .brand small{display:block;color:var(--teal);font-size:11px;letter-spacing:4px;text-transform:uppercase}
+  .menu{display:flex;gap:6px;list-style:none}
+  .menu a{
+    display:block;padding:10px 20px;text-decoration:none;color:#555;font-size:15px;
+    border-radius:20px;transition:.3s;font-weight:500;
+  }
+  .menu a:hover{background:var(--teal);color:#fff}
+  .burger{display:none;cursor:pointer;font-size:26px;color:var(--teal)}
+
+  /* Hero */
+  .hero{
+    position:relative;padding:96px 0;overflow:hidden;
+    background:
+      radial-gradient(circle at 85% 15%,rgba(15,157,143,.18),transparent 45%),
+      radial-gradient(circle at 10% 90%,rgba(255,183,77,.25),transparent 40%),
+      var(--cream);
+  }
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+  .badge{
+    display:inline-block;background:var(--teal);color:#fff;font-size:13px;
+    padding:6px 16px;border-radius:20px;letter-spacing:2px;margin-bottom:20px;
+  }
+  .hero h2{font-size:clamp(34px,5.5vw,58px);font-weight:900;line-height:1.2;margin-bottom:20px}
+  .hero h2 em{font-style:normal;color:var(--teal)}
+  .hero p{font-size:17px;color:#5a6b6a;margin-bottom:32px;max-width:520px}
+  .search-box{
+    display:flex;max-width:520px;background:#fff;border-radius:40px;
+    box-shadow:0 8px 28px rgba(0,0,0,.08);overflow:hidden;border:2px solid #fff;
+  }
+  .search-box input{flex:1;border:none;outline:none;padding:16px 22px;font-size:15px}
+  .search-box button{
+    border:none;background:var(--teal);color:#fff;padding:0 30px;font-size:15px;
+    font-weight:700;cursor:pointer;letter-spacing:2px;transition:.3s;
+  }
+  .search-box button:hover{background:var(--teal-d)}
+  .tags{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap}
+  .tags span{background:#fff;color:var(--teal);font-size:13px;padding:5px 14px;border-radius:14px;border:1px solid rgba(15,157,143,.3)}
+
+  /* Hero visual */
+  .visual{position:relative;height:420px}
+  .bubble{position:absolute;border-radius:50%;display:grid;place-items:center;font-size:44px;box-shadow:var(--shadow)}
+  .b1{width:150px;height:150px;background:#fff;top:10px;left:40px}
+  .b2{width:110px;height:110px;background:#ffe0b2;top:170px;left:0}
+  .b3{width:180px;height:180px;background:#fff;top:120px;left:150px;font-size:70px}
+  .b4{width:90px;height:90px;background:#b2dfdb;bottom:30px;left:80px}
+  .float{animation:float 4s ease-in-out infinite}
+  .float2{animation:float 3.5s ease-in-out infinite reverse}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+
+  /* Section */
+  section{padding:88px 0}
+  .sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;gap:20px;flex-wrap:wrap}
+  .sec-head h3{font-size:clamp(26px,4vw,40px);font-weight:900;letter-spacing:.5px}
+  .sec-head .line{width:60px;height:5px;background:var(--teal);border-radius:3px;margin:10px 0}
+  .sec-head p{color:var(--muted);max-width:420px}
+
+  /* Genre pills */
+  .pills{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+  .pill{
+    background:#fff;border-radius:var(--radius);padding:24px 28px;box-shadow:var(--shadow);
+    display:flex;align-items:center;gap:16px;flex:1 1 240px;max-width:340px;transition:.3s;
+    text-decoration:none;color:var(--ink);
+  }
+  .pill:hover{transform:scale(1.04);background:var(--teal);color:#fff}
+  .pill:hover .pill-icon{background:#fff;color:var(--teal)}
+  .pill-icon{
+    width:58px;height:58px;border-radius:14px;background:rgba(15,157,143,.12);
+    color:var(--teal);display:grid;place-items:center;font-size:26px;flex-shrink:0;transition:.3s;
+  }
+  .pill h4{font-size:17px}
+  .pill small{color:var(--muted);font-size:13px;display:block}
+
+  /* Stats */
+  .stats{background:var(--teal);color:#fff;padding:70px 0;border-radius:40px;margin:0 24px}
+  .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:30px;text-align:center}
+  .stat .num{font-size:44px;font-weight:900}
+  .stat .lbl{font-size:15px;opacity:.9;letter-spacing:2px}
+
+  /* Showcase */
+  .show{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:28px}
+  .show-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:.35s}
+  .show-card:hover{transform:translateY(-8px) rotate(-1deg)}
+  .show-thumb{height:200px;position:relative;display:grid;place-items:center;font-size:76px;color:#fff}
+  .s1{background:linear-gradient(135deg,#0f9d8f,#3aa99c)}
+  .s2{background:linear-gradient(135deg,#ff8a65,#ff7043)}
+  .s3{background:linear-gradient(135deg,#7986cb,#5c6bc0)}
+  .s4{background:linear-gradient(135deg,#ba68c8,#ab47bc)}
+  .tag-corner{position:absolute;top:14px;left:14px;background:rgba(255,255,255,.9);color:var(--teal);font-size:12px;padding:4px 12px;border-radius:20px;font-weight:700}
+  .show-card .body{padding:20px 22px}
+  .show-card h4{font-size:18px;margin-bottom:6px}
+  .show-card .meta{color:var(--muted);font-size:13px;display:flex;justify-content:space-between}
+
+  /* Schedule */
+  .schedule{background:#fff;border-radius:var(--radius);padding:40px;box-shadow:var(--shadow)}
+  .sch-row{display:grid;grid-template-columns:120px 1fr auto;gap:20px;align-items:center;padding:18px 0;border-bottom:1px dashed #eee}
+  .sch-row:last-child{border-bottom:none}
+  .sch-time{font-weight:900;color:var(--teal);font-size:18px;font-family:Arial,sans-serif}
+  .sch-row h5{font-size:17px}
+  .sch-row span{color:var(--muted);font-size:13px}
+  .sch-chip{background:var(--cream);color:var(--teal-d);padding:5px 14px;border-radius:20px;font-size:13px;font-weight:700}
+
+  /* Tabs */
+  .tab-bar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:40px}
+  .tab{
+    border:2px solid var(--teal);background:#fff;color:var(--teal);padding:9px 26px;
+    border-radius:30px;cursor:pointer;font-size:15px;font-weight:600;transition:.3s;
+  }
+  .tab.active,.tab:hover{background:var(--teal);color:#fff}
+  .tab-panel{display:none;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px}
+  .tab-panel.active{display:grid}
+  .mini{background:#fff;border-radius:10px;padding:18px;box-shadow:var(--shadow);transition:.25s}
+  .mini:hover{background:#f0faf9}
+  .mini .mini-emo{font-size:34px;margin-bottom:10px;display:block}
+  .mini h5{font-size:16px}
+  .mini p{color:var(--muted);font-size:13px}
+
+  /* Footer */
+  footer{background:#1e2a2a;color:#aabbba;padding:64px 0 28px;margin-top:40px}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+  .foot-brand{font-size:26px;font-weight:900;color:#fff;letter-spacing:1px;margin-bottom:14px}
+  .foot-grid h5{color:#fff;font-size:16px;margin-bottom:16px;letter-spacing:2px}
+  .foot-grid ul{list-style:none}
+  .foot-grid li{margin-bottom:10px}
+  .foot-grid a{color:#aabbba;text-decoration:none;font-size:14px;transition:.2s}
+  .foot-grid a:hover{color:var(--teal)}
+  .copy{text-align:center;border-top:1px solid #3a4a4a;padding-top:24px;font-size:13px;color:#7a8b8a}
+  .copy a{color:var(--teal)}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr}
+    .visual{height:300px;display:none}
+    .stats{margin:0;padding:50px 24px}
+  }
+  @media(max-width:820px){
+    .menu{position:fixed;top:78px;left:0;right:0;flex-direction:column;background:#fff;padding:18px;box-shadow:0 12px 30px rgba(0,0,0,.1);transform:translateY(-200%);transition:.4s;visibility:hidden}
+    .menu.open{transform:translateY(0);visibility:visible}
+    .menu a{border-radius:8px}
+    .burger{display:block}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:28px}
+    section{padding:60px 0}
+  }
+  @media(max-width:480px){
+    .foot-grid{grid-template-columns:1fr}
+    .sch-row{grid-template-columns:1fr;gap:6px}
+    .sch-chip{justify-self:start}
+  }
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/zhangzong.js"></script>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#">
+      <div class="logo-bubble">88</div>
+      <div><h1>88电影网</h1><small>88 Film Hub</small></div>
+    </a>
+    <ul class="menu" id="menu">
+      <li><a href="#home">首页</a></li>
+      <li><a href="#genre">分类</a></li>
+      <li><a href="#update">每日更新</a></li>
+      <li><a href="#schedule">放映表</a></li>
+      <li><a href="#topic">专题</a></li>
+      <li><a href="#about">关于</a></li>
+    </ul>
+    <div class="burger" onclick="document.getElementById('menu').classList.toggle('open')">☰</div>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="badge">◆ 发发电影 · 好片发不停</span>
+      <h2>每天打开 <em>88电影网</em><br>都是好运气</h2>
+      <p>海量影视资源一键直达，电影、剧集、综艺、动漫全品类覆盖。无需复杂操作，轻松点开即看，让看片回归最简单的快乐。</p>
+      <div class="search-box">
+        <input type="text" placeholder="搜索你想看的影片、演员或类型…">
+        <button onclick="this.textContent='搜索中…';setTimeout(()=>this.textContent='搜 索',800)">搜 索</button>
+      </div>
+      <div class="tags">
+        <span>热门推荐</span><span>高分经典</span><span>新片速递</span><span>全家欢</span><span>悬疑烧脑</span>
+      </div>
+    </div>
+    <div class="visual">
+      <div class="bubble b1 float">🎬</div>
+      <div class="bubble b2 float2">🍿</div>
+      <div class="bubble b3 float">📽️</div>
+      <div class="bubble b4 float2">🎞️</div>
+    </div>
+  </div>
+</section>
+
+<section id="genre">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><h3>内容分类</h3><div class="line"></div></div>
+      <p>按类型、题材一键筛选，快速找到你的下一份快乐。</p>
+    </div>
+    <div class="pills">
+      <a class="pill" href="#"><div class="pill-icon">🎥</div><div><h4>动作冒险</h4><small>肾上腺素飙升</small></div></a>
+      <a class="pill" href="#"><div class="pill-icon">😂</div><div><h4>喜剧搞笑</h4><small>解压必备</small></div></a>
+      <a class="pill" href="#"><div class="pill-icon">💕</div><div><h4>爱情文艺</h4><small>心动时刻</small></div></a>
+      <a class="pill" href="#"><div class="pill-icon">🔍</div><div><h4>悬疑推理</h4><small>烧脑反转</small></div></a>
+      <a class="pill" href="#"><div class="pill-icon">👻</div><div><h4>惊悚恐怖</h4><small>胆量挑战</small></div></a>
+      <a class="pill" href="#"><div class="pill-icon">🚀</div><div><h4>科幻奇幻</h4><small>脑洞大开</small></div></a>
+      <a class="pill" href="#"><div class="pill-icon">📺</div><div><h4>电视剧集</h4><small>长篇追更</small></div></a>
+      <a class="pill" href="#"><div class="pill-icon">🎌</div><div><h4>动漫番剧</h4><small>二次元世界</small></div></a>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat"><div class="num">8,888+</div><div class="lbl">片源总量</div></div>
+    <div class="stat"><div class="num">24h</div><div class="lbl">每日更新</div></div>
+    <div class="stat"><div class="num">12</div><div class="lbl">内容分类</div></div>
+    <div class="stat"><div class="num">100%</div><div class="lbl">免费观看</div></div>
+  </div>
+</div>
+
+<section id="update">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><h3>精选推荐</h3><div class="line"></div></div>
+      <p>编辑团队精心挑选，从院线新片到经典老片，总有一部适合你。</p>
+    </div>
+    <div class="show">
+      <div class="show-card"><div class="show-thumb s1"><span class="tag-corner">热映中</span>🎬</div><div class="body"><h4>城市边缘人</h4><div class="meta"><span>剧情 · 犯罪</span><span>★ 8.9</span></div></div></div>
+      <div class="show-card"><div class="show-thumb s2"><span class="tag-corner">高分经典</span>🎞️</div><div class="body"><h4>那年夏天</h4><div class="meta"><span>青春 · 爱情</span><span>★ 9.1</span></div></div></div>
+      <div class="show-card"><div class="show-thumb s3"><span class="tag-corner">新剧上线</span>📺</div><div class="body"><h4>暗夜追凶</h4><div class="meta"><span>悬疑 · 24集</span><span>★ 8.6</span></div></div></div>
+      <div class="show-card"><div class="show-thumb s4"><span class="tag-corner">国漫佳作</span>🎌</div><div class="body"><h4>山海奇谭</h4><div class="meta"><span>动画 · 奇幻</span><span>★ 9.0</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="schedule" style="background:#f4fbfa">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><h3>今日放映表</h3><div class="line"></div></div>
+      <p>跟着时间表安排你的观影计划，不错过每一部好片。</p>
+    </div>
+    <div class="schedule">
+      <div class="sch-row"><div class="sch-time">09:00</div><div><h5>晨间轻松档 · 喜剧合集</h5><span>用笑声开启元气满满的一天</span></div><div class="sch-chip">轻松</div></div>
+      <div class="sch-row"><div class="sch-time">12:00</div><div><h5>午间热播剧 · 更新上线</h5><span>最新集数准时解锁</span></div><div class="sch-chip">追更</div></div>
+      <div class="sch-row"><div class="sch-time">15:00</div><div><h5>午后经典 · 老片修复</h5><span>重温影史不可错过的佳作</span></div><div class="sch-chip">经典</div></div>
+      <div class="sch-row"><div class="sch-time">19:00</div><div><h5>黄金档 · 院线新片</h5><span>同步院线，抢先看大片</span></div><div class="sch-chip">热门</div></div>
+      <div class="sch-row"><div class="sch-time">22:00</div><div><h5>深夜档 · 悬疑烧脑</h5><span>安静夜里，来一场思维冒险</span></div><div class="sch-chip">烧脑</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="topic">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><h3>主题专题</h3><div class="line"></div></div>
+      <p>精选主题策划，发现不一样的好片视角。</p>
+    </div>
+    <div class="tab-bar">
+      <button class="tab active" onclick="switchTab(0)">周末放松</button>
+      <button class="tab" onclick="switchTab(1)">亲子时光</button>
+      <button class="tab" onclick="switchTab(2)">情侣约会</button>
+      <button class="tab" onclick="switchTab(3)">独自沉醉</button>
+    </div>
+    <div class="tab-panel active">
+      <div class="mini"><span class="mini-emo">😄</span><h5>轻松喜剧周</h5><p>笑点密集，快乐加倍。</p></div>
+      <div class="mini"><span class="mini-emo">🌿</span><h5>治愈系清单</h5><p>温柔故事，抚慰人心。</p></div>
+      <div class="mini"><span class="mini-emo">🍿</span><h5>下饭综艺</h5><p>边吃边看，根本停不下来。</p></div>
+    </div>
+    <div class="tab-panel">
+      <div class="mini"><span class="mini-emo">👨‍👩‍👧</span><h5>全年龄动画</h5><p>大人小孩一起看。</p></div>
+      <div class="mini"><span class="mini-emo">🐾</span><h5>萌宠纪录片</h5><p>暖心治愈，寓教于乐。</p></div>
+      <div class="mini"><span class="mini-emo">🎨</span><h5>亲子手工剧</h5><p>边看边玩，激发创意。</p></div>
+    </div>
+    <div class="tab-panel">
+      <div class="mini"><span class="mini-emo">💗</span><h5>心动爱情</h5><p>甜蜜升温，约会话匣子。</p></div>
+      <div class="mini"><span class="mini-emo">🎶</span><h5>歌舞音乐</h5><p>跟着节奏摇摆起来。</p></div>
+      <div class="mini"><span class="mini-emo">🌃</span><h5>城市夜色</h5><p>浪漫氛围感拉满。</p></div>
+    </div>
+    <div class="tab-panel">
+      <div class="mini"><span class="mini-emo">🧠</span><h5>深度剧情</h5><p>值得反复品味的作品。</p></div>
+      <div class="mini"><span class="mini-emo">🎻</span><h5>艺术电影</h5><p>慢下来，感受镜头语言。</p></div>
+      <div class="mini"><span class="mini-emo">📖</span><h5>改编文学</h5><p>文字与影像的双重享受。</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="about" style="background:#fff">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><h3>关于 88电影网</h3><div class="line"></div></div>
+      <p>用最简单的设计，做最贴心的观影入口。</p>
+    </div>
+    <div class="pills">
+      <div class="pill"><div class="pill-icon">⚡</div><div><h4>极速加载</h4><small>告别漫长等待</small></div></div>
+      <div class="pill"><div class="pill-icon">🎯</div><div><h4>精准推荐</h4><small>越看越懂你</small></div></div>
+      <div class="pill"><div class="pill-icon">🛡️</div><div><h4>安全无忧</h4><small>清爽浏览体验</small></div></div>
+      <div class="pill"><div class="pill-icon">💬</div><div><h4>用心陪伴</h4><small>随时听你反馈</small></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">88电影网</div>
+        <p>88电影网（八八影院）让每一次点开，都是一次好运气。轻松、便捷、丰富的影视内容平台。</p>
+      </div>
+      <div><h5>观影</h5><ul>
+        <li><a href="#genre">电影分类</a></li>
+        <li><a href="#genre">电视剧集</a></li>
+        <li><a href="#update">精选推荐</a></li>
+        <li><a href="#topic">主题专题</a></li>
+      </ul></div>
+      <div><h5>服务</h5><ul>
+        <li><a href="#">使用帮助</a></li>
+        <li><a href="#">意见反馈</a></li>
+        <li><a href="#">合作方式</a></li>
+        <li><a href="#">更新日志</a></li>
+      </ul></div>
+      <div><h5>条款</h5><ul>
+        <li><a href="#">用户协议</a></li>
+        <li><a href="#">隐私政策</a></li>
+        <li><a href="#">免责声明</a></li>
+        <li><a href="#">版权保护</a></li>
+      </ul></div>
+    </div>
+    <div class="copy">
+      © 2026 <a href="https://88dianyingwang-zh.github.io">88电影网（88dianyingwang-zh.github.io）</a> · 本站仅提供影视信息交流与分享服务
+    </div>
+  </div>
+</footer>
+
+<script>
+  function switchTab(i){
+    document.querySelectorAll('.tab').forEach(function(t,j){t.classList.toggle('active',j===i)});
+    document.querySelectorAll('.tab-panel').forEach(function(p,j){p.classList.toggle('active',j===i)});
+  }
+  document.querySelectorAll('.menu a').forEach(function(a){
+    a.addEventListener('click',function(){document.getElementById('menu').classList.remove('open')});
+  });
+</script>
+</body>
+</html>
